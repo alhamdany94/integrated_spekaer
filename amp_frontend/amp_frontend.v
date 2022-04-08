@@ -13,16 +13,16 @@ module amp_frontend (
     
     input nerror_in,
     
-    output i2s_bck, 
+    output i2s_bck,
     output i2s_ws,
-    output i2s_d0, 
+    output i2s_d0,
 
-    inout i2c_sda, 
-    inout i2c_scl, 
+    inout i2c_sda,
+    inout i2c_scl,
    
-    output rx_out,
+    //output rx_out,
     
-    output nenable_out, 
+    output nenable_out,
     output nmute_out);
 
     /* synthesis GSR=“ENABLED” */
@@ -53,7 +53,7 @@ module amp_frontend (
     
 //    `endif  
     
-    wire audio_locked;
+    //wire audio_locked;
     wire rx_out_tmp;
     wire send_config;
 
@@ -67,10 +67,10 @@ module amp_frontend (
       //.audio_locked(audio_locked),
       .edgedetect(rx_out_tmp)); 
 
-    assign i2s_d0 = i2s_d0_tmp & nmute_out;
-    assign i2s_ws = i2s_ws_tmp & nmute_out;
-    assign i2s_bck = i2s_bck_tmp & nmute_out;
-    assign rx_out = rx_out_tmp; 
+    assign i2s_d0 = i2s_d0_tmp ;//& nmute_out;
+    assign i2s_ws = i2s_ws_tmp ;//& nmute_out;
+    assign i2s_bck = i2s_bck_tmp ;//& nmute_out;
+    //assign rx_out = rx_out_tmp; 
 
     amp_state_control ctrl ( 
         .clk_in(clk),
@@ -87,7 +87,7 @@ module amp_frontend (
         .send_cfg(send_config),
         .sda(i2c_sda),
         .scl(i2c_scl)); 
-    assign nenable_out = send_config;
+    //assign nenable_out = send_config;
     
 //    clock_divider clk_wrapper(
 //    .clk(clk),

@@ -127,8 +127,8 @@ module amp_state_control (
         end
     endcase
   end 
-  //assign nenable_out = nenable_reg ;
+  assign nenable_out = nenable_reg ;
   assign mute      = ~audio_locked_in | ~send_config_delayed;
   assign nmute_out = ~mute;  
-  //assign send_config_out = send_config; 
+  assign send_config_out = send_config; 
 endmodule 
